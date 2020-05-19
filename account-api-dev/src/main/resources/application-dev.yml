@@ -1,0 +1,11 @@
+server:
+  port: 8088
+
+spring:
+  datasource:                                           # 数据源的相关配置
+    url: jdbc:mysql://106.55.13.7:3306/account_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    password: root
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
