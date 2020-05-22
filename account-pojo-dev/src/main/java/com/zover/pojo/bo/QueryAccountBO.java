@@ -1,6 +1,6 @@
 package com.zover.pojo.bo;
 
-public class AccountVO {
+public class QueryAccountBO {
 
     private String startDate;
 
@@ -51,4 +51,5 @@ public class AccountVO {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
 }
