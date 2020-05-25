@@ -1,5 +1,8 @@
 package com.zover.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.Column;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -23,12 +26,24 @@ public class Account {
     /**
      * 日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date date;
 
     /**
      * 备注
      */
     private String remark;
+
+    /**
+     * 创建人
+     */
+    private String creator;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "createTime")
+    private Date createtime;
 
     /**
      * 获取id
@@ -118,5 +133,41 @@ public class Account {
      */
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    /**
+     * 获取创建人
+     *
+     * @return creator - 创建人
+     */
+    public String getCreator() {
+        return creator;
+    }
+
+    /**
+     * 设置创建人
+     *
+     * @param creator 创建人
+     */
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    /**
+     * 获取创建时间
+     *
+     * @return createTime - 创建时间
+     */
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    /**
+     * 设置创建时间
+     *
+     * @param createtime 创建时间
+     */
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 }

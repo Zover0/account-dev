@@ -8,10 +8,7 @@ import com.zover.service.AccountService;
 import com.zover.utils.IMOOCJSONResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sun.awt.im.InputMethodManager;
 
 import java.util.List;
@@ -34,13 +31,13 @@ public class AccountController {
     }
 
     @PostMapping("/queryAccount")
-    public IMOOCJSONResult queryAccount(QueryAccountBO queryAccountBO){
+    public IMOOCJSONResult queryAccount(@RequestBody QueryAccountBO queryAccountBO){
         List<Account> list = accountService.queryAccount(queryAccountBO);
         return IMOOCJSONResult.ok(list);
     }
 
     @PostMapping("/addAccount")
-    public IMOOCJSONResult addAccount(AccountBO accountBO){
+    public IMOOCJSONResult addAccount(@RequestBody AccountBO accountBO){
 
         if (StringUtils.isBlank(accountBO.getDate()) ||
                 StringUtils.isBlank(accountBO.getRemark()) ||
@@ -59,7 +56,7 @@ public class AccountController {
     }
 
     @PostMapping("/deleteAccount")
-    public IMOOCJSONResult deleteAccount(String id){
+    public IMOOCJSONResult deleteAccount(@RequestParam String id){
         if(StringUtils.isBlank(id)){
             return IMOOCJSONResult.errorMsg("主键为空");
         }

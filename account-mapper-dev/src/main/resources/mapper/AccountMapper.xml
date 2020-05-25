@@ -10,5 +10,7 @@
     <result column="money" property="money" jdbcType="INTEGER" />
     <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>

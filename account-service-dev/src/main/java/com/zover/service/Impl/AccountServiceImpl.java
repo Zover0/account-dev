@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,6 +30,8 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> queryAccount(@RequestBody QueryAccountBO queryAccountBO){
         Example accountExample = new Example(Account.class);
         Example.Criteria criteria = accountExample.createCriteria();
+
+        accountExample.setOrderByClause("date desc");
 
         if(StringUtils.isNoneBlank(queryAccountBO.getRemark())){
             criteria.andLike("remark","%"+queryAccountBO.getRemark()+"%");
@@ -46,6 +49,7 @@ public class AccountServiceImpl implements AccountService {
             criteria.andLessThan("money",queryAccountBO.getEndMoney());
         }
 
+
         List<Account> list = accountMapper.selectByExample(accountExample);
 
         return list;
@@ -58,6 +62,8 @@ public class AccountServiceImpl implements AccountService {
         Account account = new Account();
         account.setDate(DateUtil.stringToDate(accountBO.getDate()));
         account.setMoney(accountBO.getMoney());
+        account.setCreatetime(new Date());
+        account.setCreator(accountBO.getCreator());
         account.setRemark(accountBO.getRemark());
 
         accountMapper.insert(account);

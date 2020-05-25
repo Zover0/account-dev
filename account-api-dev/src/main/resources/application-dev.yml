@@ -4,7 +4,7 @@ server:
 spring:
   datasource:                                           # 数据源的相关配置
     url: jdbc:mysql://106.55.13.7:3306/account_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
-    password: root
+    password: 13450376193
 
 mybatis:
   configuration:

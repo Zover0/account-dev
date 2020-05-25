@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -29,24 +30,9 @@ public class UserTokenInterceptor implements HandlerInterceptor {
 //        System.out.println("进入到拦截器，被拦截。。。");
 
 //        String userId = request.getHeader("headerUserId");
-        String userToken = request.getHeader("headerUserToken");
+        String userToken = request.getHeader("userToken");
 
-        if (StringUtils.isNotBlank(userToken)) {
-            String token = CookieUtils.getCookieValue(request,"userToken");
-//            String uniqueToken = redisOperator.get(REDIS_USER_TOKEN + ":" + userId);
-            if (StringUtils.isBlank(token)) {
-//                System.out.println("请登录...");
-                returnErrorResponse(response, IMOOCJSONResult.errorMsg("请登录..."));
-                return false;
-            } else {
-                if (!token.equals(userToken)) {
-//                    System.out.println("账号在异地登录...");
-                    returnErrorResponse(response, IMOOCJSONResult.errorMsg("账号在异地登录..."));
-                    return false;
-                }
-            }
-        } else {
-//            System.out.println("请登录...");
+        if (StringUtils.isBlank(userToken) || "undefined".equals(userToken)) {
             returnErrorResponse(response, IMOOCJSONResult.errorMsg("请登录..."));
             return false;
         }

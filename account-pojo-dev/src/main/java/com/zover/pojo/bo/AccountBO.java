@@ -12,6 +12,8 @@ public class AccountBO {
 
     private String remark;
 
+    private String creator;
+
     public Integer getId() {
         return id;
     }
@@ -50,5 +52,13 @@ public class AccountBO {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 }
